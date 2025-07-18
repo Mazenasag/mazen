@@ -6,7 +6,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Academic Performance Prediction</title>
+  <title>RecAPI_MovieFuse
+Public
+</title>
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/favicon.png" rel="apple-touch-icon">
@@ -120,65 +122,110 @@
           </div>
 
        <div class="portfolio-description">
-  <h2>Project Details</h2>
-  <p>
-    <b>🎓 Student Performance Prediction</b><br><br>
+<h2>Project Details</h2>
+<p>
+  <b>🎬🧠 RECAPI_MOVIEFUSE: A Hybrid Movie Recommendation System</b><br><br>
 
-    <img src="assets\img\portfolio\student_per\student_per.PNG" alt="Student Performance Preview"><br><br>
+  <img src="static/images/Capture.PNG" alt="Interface Screenshot"><br><br>
+  <img src="static/images/Capture2.PNG" alt="Recommendation Screenshot"><br><br>
 
-    <b>📌 Problem Statement</b><br>
-    This project aims to analyze how students' academic performance (test scores) is influenced by various factors such as Gender, Ethnicity, Parental Level of Education, Lunch Type, and Test Preparation Course. The goal is to build predictive models that estimate students' scores based on these variables.<br><br>
+  <b>📌 Project Overview</b><br>
+  RECAPI_MOVIEFUSE is a hybrid movie recommendation system that combines content-based filtering with semantic similarity using transformer-based embeddings (Sentence-BERT). The system is modular, scalable, and built using MLOps principles for maintainability and reproducibility.<br><br>
 
-    <b>📊 Data Collection</b><br>
-    <b>Dataset Source:</b> Kaggle - Students Performance in Exams<br><br>
+  <b>🧠 Key Features</b><br>
+  <ul>
+    <li>Transformer-based sentence embeddings (all-MiniLM-L6-v2)</li>
+    <li>Cosine similarity scoring for semantic relevance</li>
+    <li>Configurable YAML-based pipeline (data paths, model, thresholds)</li>
+    <li>Modular components for ingestion, preprocessing, and inference</li>
+    <li>Streamlit-powered UI for real-time movie recommendations</li>
+    <li>CI/CD pipeline with GitHub Actions for testing and deployment</li>
+  </ul><br>
 
-    <b>Features Description:</b><br>
-    <ul>
-      <li><b>gender:</b> Sex of students (Male/Female)</li>
-      <li><b>race/ethnicity:</b> Ethnicity of students (Group A, B, C, D, E)</li>
-      <li><b>parental level of education:</b> Parents' highest education level</li>
-      <li><b>lunch:</b> Lunch type before test (Standard/Free or Reduced)</li>
-      <li><b>test preparation course:</b> Completion status (Completed/Not Completed)</li>
-      <li><b>math score, reading score, writing score:</b> Students' performance in each subject</li>
-    </ul><br>
+  <b>📊 Dataset Description</b><br>
+  <ul>
+    <li><b>Source:</b> IMDb-style movie metadata (scraped/curated)</li>
+    <li><b>Key Columns:</b> movie_id, title, overview, genres, embedding</li>
+    <li><b>Embedding:</b> Generated using SentenceTransformer and cached</li>
+  </ul><br>
 
-    <b>Dataset Summary:</b><br>
-    - 8 columns, 1000 rows<br>
-    - Mean scores between 66 and 68.05<br>
-    - Standard deviations around 14.6–15.2<br>
-    - Minimum scores: Math (0), Writing (10), Reading (17)<br><br>
+  <b>⚙️ Project Structure</b><br>
+  <pre>
+RECAPI_MOVIEFUSE/
+├── config/
+│   ├── config.yaml
+│   └── params.yaml
+├── data/
+│   └── raw_movies.csv
+├── research/
+│   └── embeddings.ipynb
+├── src/recapi/
+│   ├── component/
+│   │   ├── ingestion.py
+│   │   ├── preprocessing.py
+│   │   └── training.py
+│   ├── utils/
+│   │   └── vector_tools.py
+│   └── pipeline/
+│       └── main.py
+├── app.py
+├── requirements.txt
+└── setup.py
+  </pre><br>
 
-    <b>📈 Model Performance Comparison:</b><br>
-    <ul>
-      <li><b>Linear Regression:</b> R² = 0.88 (best performance)</li>
-      <li><b>Ridge Regression:</b> Similar to Linear, high accuracy</li>
-      <li><b>Random Forest & XGBoost:</b> Good generalization, slightly lower than Ridge</li>
-      <li><b>Decision Tree:</b> Overfitted</li>
-      <li><b>Lasso:</b> Weakest model</li>
-    </ul><br>
+  <b>🚀 How to Run the Project:</b><br>
+  1. Clone the repository:<br>
+  <code>git clone https://github.com/Mazenasag/RECAPI_MOVIEFUSE.git</code><br>
+  2. Navigate to project folder:<br>
+  <code>cd RECAPI_MOVIEFUSE</code><br>
+  3. Install dependencies:<br>
+  <code>pip install -r requirements.txt</code><br>
+  4. Run the pipeline:<br>
+  <code>python src/recapi/pipeline/main.py</code><br>
+  5. Or launch the UI:<br>
+  <code>streamlit run app.py</code><br><br>
 
-    <b>🛠️ How to Run the Project:</b><br>
-    1. Clone the repository:<br>
-    <code>git clone https://github.com/Mazenasag/End-to-end-student-performance-prediction-system.git</code><br>
-    2. Navigate to project folder:<br>
-    <code>cd student-performance-prediction</code><br>
-    3. Install dependencies:<br>
-    <code>pip install -r requirements.txt</code><br>
-    4. Run the app:<br>
-    <code>python app.py</code><br>
-    5. Open in browser: <code>http://127.0.0.1:5000/</code><br><br>
+  <b>🎯 Sample Results:</b><br>
+  <table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+      <th>Query Movie</th>
+      <th>Top Recommendation</th>
+      <th>Similarity Score</th>
+    </tr>
+    <tr>
+      <td>Inception</td>
+      <td>Interstellar</td>
+      <td>0.91</td>
+    </tr>
+    <tr>
+      <td>The Matrix</td>
+      <td>Equilibrium</td>
+      <td>0.88</td>
+    </tr>
+    <tr>
+      <td>Titanic</td>
+      <td>The Notebook</td>
+      <td>0.85</td>
+    </tr>
+    <tr>
+      <td>The Godfather</td>
+      <td>Scarface</td>
+      <td>0.83</td>
+    </tr>
+  </table><br><br>
 
-    <b>🚀 Future Enhancements:</b><br>
-    - Deploy the model using Streamlit or Flask<br>
-    - Tune models with GridSearchCV<br>
-    - Try deep learning techniques<br>
-    - Add advanced feature engineering<br><br>
+  <b>🔧 Future Enhancements:</b><br>
+  - Add collaborative filtering component<br>
+  - Integrate streaming metadata sources (e.g., TMDb API)<br>
+  - Improve genre-aware ranking logic<br>
+  - Add user-profile-based recommendations<br><br>
 
-    <b>👥 Contributor:</b> Mazen Asag<br>
-    <b>📜 License:</b> MIT License<br><br>
+  <b>👥 Contributor:</b> Mazen Asag<br>
+  <b>📜 License:</b> MIT License<br><br>
 
-    <span>Feel free to contribute and improve the model! 🚀</span>
-  </p>
+  <span>Open to contributions, improvements, and suggestions! 🎬🚀</span>
+</p>
+
 </div>
 
 
